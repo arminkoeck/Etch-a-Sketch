@@ -1,1 +1,1 @@
-# Etch-a-Sketch
+This project is one of the last exercises of the TOP-Fundamentals part. The goal is to code a website that works kind of like an Etch-a-Sketch.
