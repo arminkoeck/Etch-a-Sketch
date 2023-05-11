@@ -2,28 +2,28 @@
 
 let squaresPerRow = 16;
 let squareSize = 100/squaresPerRow;
+let squareBlock;
 
 function createSketchBoard () {
 for (i = 0; i < (squaresPerRow*squaresPerRow); i++) {
-    const squareBlock = document.createElement("div");
+    squareBlock = document.createElement("div");
     squareBlock.classList.add("squareBlock");
-    squareBlock.textContent = "Hola";
     squareBlock.style.flexBasis = `${squareSize}%`;
     document.querySelector("#container").appendChild(squareBlock);
-}
-}
 
-const squares = document.querySelectorAll(".squareBlock");
-
-var mouseIsDown = false;
-squares.addEventListener("mousedown", function () {mouseIsDown = true})
-squares.addEventListener("mouseup", function() {mouseIsDown = false})
-
-squares.addEventListener("mouseover", function(e) {
+    container = document.querySelector("#container")
+    var mouseIsDown = false;
+    document.addEventListener("mousedown", function () {mouseIsDown = true})
+    document.addEventListener("mouseup", function() {mouseIsDown = false})
+    squareBlock.addEventListener("mouseover", function(e) {
     if(mouseIsDown) {
         e.target.style.backgroundColor = "blue";
     }
 })
+}
+}
+
+
 
 
 
