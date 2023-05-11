@@ -1,0 +1,21 @@
+
+
+#layout {
+    display: flex;
+    flex-direction: row;
+}
+
+
+#container {
+    display: flex;
+    flex: 0 0 600px;
+    height: 600px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-shadow: 0px 0px 10px 4px #00000044;
+}
+
+.squareBlock {
+    background-color: green;
+   
+}
