@@ -2,7 +2,6 @@
 
 let squaresPerRow = 16;
 let squareSize = 100/squaresPerRow;
-let squareBlock;
 
 function createSketchBoard () {
 for (i = 0; i < (squaresPerRow*squaresPerRow); i++) {
@@ -12,32 +11,20 @@ for (i = 0; i < (squaresPerRow*squaresPerRow); i++) {
     document.querySelector("#container").appendChild(squareBlock);
 
     container = document.querySelector("#container")
-    var mouseIsDown = false;
+    let mouseIsDown = false;
     document.addEventListener("mousedown", function () {mouseIsDown = true})
     document.addEventListener("mouseup", function() {mouseIsDown = false})
-    squareBlock.addEventListener("mouseover", function(e) {
+    squareBlock.addEventListener("mousemove", function(e) {
     if(mouseIsDown) {
-        e.target.style.backgroundColor = "blue";
+        e.target.style.backgroundColor = "#617ea5";
     }
 })
 }
 }
 
+createSketchBoard();
 
 
-
-
-/*
-create css class, that gets new background-color value when selected
-create color-selection tool
-*/
-
-/*
-function hasClass (elem, className) {
-    return elem.className
-}
-})
-*/
 
 
 /*
