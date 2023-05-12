@@ -4,26 +4,35 @@ let squaresPerRow = 16;
 let squareSize = 100/squaresPerRow;
 
 function createSketchBoard () {
-for (i = 0; i < (squaresPerRow*squaresPerRow); i++) {
-    squareBlock = document.createElement("div");
-    squareBlock.classList.add("squareBlock");
-    squareBlock.style.flexBasis = `${squareSize}%`;
-    document.querySelector("#container").appendChild(squareBlock);
+    for (i = 0; i < (squaresPerRow*squaresPerRow); i++) {
+        squareBlock = document.createElement("div");
+        squareBlock.classList.add("squareBlock");
+        squareBlock.style.flexBasis = `${squareSize}%`;
+        document.querySelector("#container").appendChild(squareBlock);
 
-    container = document.querySelector("#container")
-    let mouseIsDown = false;
-    document.addEventListener("mousedown", function () {mouseIsDown = true})
-    document.addEventListener("mouseup", function() {mouseIsDown = false})
-    squareBlock.addEventListener("mousemove", function(e) {
-    if(mouseIsDown) {
-        e.target.style.backgroundColor = "#617ea5";
-    }
-})
-}
-}
+        container = document.querySelector("#container")
+        let mouseIsDown = false;
+        document.addEventListener("mousedown", function () {mouseIsDown = true})
+        document.addEventListener("mouseup", function() {mouseIsDown = false})
+        squareBlock.addEventListener("mousemove", function(e) {
+            if(mouseIsDown) {
+                e.target.style.backgroundColor = "#617ea5";
+            };
+        });
+    };
+};
 
 createSketchBoard();
 
+
+
+clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", function () {
+    squareBlock = document.querySelectorAll(".squareBlock");
+    squareBlock.forEach((squareBlock) => {
+        squareBlock.style.backgroundColor = "#ffffff";
+    })
+});
 
 
 
