@@ -1,49 +1,145 @@
 
 
+// assigns sketch board container to variable & defines square size
+
+container = document.querySelector("#container");
 let squaresPerRow = 16;
 let squareSize = 100/squaresPerRow;
+
+
+// defines default color for Color Mode
+
+let pickedColor = "#617ea5";
+
+
+// creates the sketch board
 
 function createSketchBoard () {
     for (i = 0; i < (squaresPerRow*squaresPerRow); i++) {
         squareBlock = document.createElement("div");
         squareBlock.classList.add("squareBlock");
         squareBlock.style.flexBasis = `${squareSize}%`;
-        document.querySelector("#container").appendChild(squareBlock);
-
-        container = document.querySelector("#container")
-        let mouseIsDown = false;
-        document.addEventListener("mousedown", function () {mouseIsDown = true})
-        document.addEventListener("mouseup", function() {mouseIsDown = false})
-        squareBlock.addEventListener("mousemove", function(e) {
-            if(mouseIsDown) {
-                e.target.style.backgroundColor = "#617ea5";
-            };
-        });
+        container.appendChild(squareBlock);
     };
 };
 
 createSketchBoard();
 
 
+// checks if computer mouse is clicked or not
 
-clearButton = document.querySelector("#clear");
+let mouseIsDown = false;
+container.addEventListener("mousedown", function () {mouseIsDown = true})
+document.addEventListener("mouseup", function() {mouseIsDown = false})
+
+// changes color of passed squares, argument decides which color
+
+function sketch (color) {
+    container.addEventListener("mouseover", function(e) {
+        if(mouseIsDown) {
+            e.target.style.backgroundColor = color;
+        };
+    });
+};
+
+
+// assigns buttons to variables
+
+colorButton = document.querySelector(".color");
+rainbowButton = document.querySelector(".rainbow");
+eraserButton = document.querySelector(".eraser");
+
+
+// sets color button as default
+
+colorButton.classList.add("active");
+let buttonCheck = "color";
+changeColor();
+
+
+// generates a random rgb color
+
+function randomColor () {
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+    let randomColor = "rgb("+`${red},`+` ${green},`+` ${blue}`+")";
+    return randomColor;
+};
+
+// lets you pick a color for the Color Mode
+
+let colorPicker = document.getElementById("colorPicker");
+
+colorPicker.oninput = function (e) {
+    pickedColor = e.target.value;
+    changeColor ();
+} 
+
+
+// checks which button is active and defines sketch color
+
+function changeColor () {
+    if (buttonCheck === "color") { 
+            sketch(pickedColor);
+    } else if (buttonCheck === "rainbow") {
+            container.addEventListener("mouseover", function rainbow () {
+                sketch(randomColor());
+                // removes the randomColor generating if another color changing button is clicked
+                colorButton.addEventListener ("click", function () {
+                    container.removeEventListener("mouseover", rainbow);
+                });
+                eraserButton.addEventListener ("click", function () {
+                    container.removeEventListener("mouseover", rainbow);
+                });
+            });
+    } else if (buttonCheck === "eraser") {
+            sketch("#ffffff");
+    } else {
+            sketch("#617ea5");
+    }
+};
+
+
+// sets color button on active
+
+colorButton.addEventListener("click", function () {
+    colorButton.classList.add("active");
+    rainbowButton.classList.remove("active");
+    eraserButton.classList.remove("active");
+    buttonCheck = "color";
+    changeColor();
+});
+
+
+// sets rainbow button on active
+
+rainbowButton.addEventListener("click", function () {
+    rainbowButton.classList.add("active");
+    colorButton.classList.remove("active");
+    eraserButton.classList.remove("active");
+    buttonCheck = "rainbow";
+    changeColor();
+});
+
+
+// sets eraser button on active
+
+eraserButton.addEventListener("click", function () {
+    eraserButton.classList.add("active");
+    colorButton.classList.remove("active");
+    rainbowButton.classList.remove("active");
+    buttonCheck = "eraser";
+    changeColor();
+});
+
+
+// clears the whole sketch board
+
+clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", function () {
     squareBlock = document.querySelectorAll(".squareBlock");
     squareBlock.forEach((squareBlock) => {
         squareBlock.style.backgroundColor = "#ffffff";
     })
 });
-
-
-
-/*
-Create container div for the grid divs in html
-Create loop for multiple divs (16x16 = 256) in js
-Set divs padding to 4 equal values to receive a square
-Give the container a border and/or a background shadow 
-Use Flexbox css to set container size (960 px)
-
-Set a size for the squares in css in %
-Calculate right % with input variables
-Create a bar to set the input variables
-*/
