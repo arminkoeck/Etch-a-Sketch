@@ -22,18 +22,21 @@ h1 {
 #container {
     background-color: white;
     display: flex;
-    flex: 0 0 500px;
-    height: 500px;
+    aspect-ratio: 1 / 1;
+    flex: 0 1 500px;
     flex-direction: row;
     flex-wrap: wrap;
     box-shadow: 0px 0px 10px 4px #617ea566;
     user-select: none;
+    justify-content: center;
 }
 
 #content {
     display: flex;
     flex-wrap: wrap-reverse;
     justify-content: space-evenly;
+    align-items: center;
+    flex: 0 0 auto;
 }
 
 #settings {
@@ -75,6 +78,7 @@ button:hover {
     background-color: #46648C;
 }
 
+
 #colorPicker {
     width: 100px;
 	height: 100px;
@@ -96,3 +100,36 @@ input[type="color"]::-webkit-color-swatch {
 input[type="color"]::-webkit-color-swatch:hover {
     border: none;
 }
+
+#slider {
+    color: #617ea5;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 200px;
+    background: transparent;
+    margin-top: 20px;
+}
+
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    background: #617ea5bb;
+    margin-top: -12px; 
+    box-shadow: 0px 0px 1px 1px #46648C44;
+  }
+
+
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 1px #00000044;
+    background: #ffffff;
+    border-radius: 10px;
+    
+  }

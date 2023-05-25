@@ -32,6 +32,7 @@ let mouseIsDown = false;
 container.addEventListener("mousedown", function () {mouseIsDown = true})
 document.addEventListener("mouseup", function() {mouseIsDown = false})
 
+
 // changes color of passed squares, argument decides which color
 
 function sketch (color) {
@@ -41,6 +42,32 @@ function sketch (color) {
         };
     });
 };
+
+
+// change sketch board size with slider
+
+let slider = document.getElementById("slider");
+
+slider.oninput = (e) => changeBoardSize(e.target.value);
+
+function changeBoardSize (newSizeValue) {
+    clearSketchBoard();
+    setNewSize(newSizeValue);
+}
+
+function clearSketchBoard () {
+    squareBlockArray = document.querySelectorAll(".squareBlock");
+    squareBlockArray.forEach((squareBlock) => {squareBlock.remove()})
+}
+
+function setNewSize (newSizeValue) {
+    squaresPerRow = newSizeValue;
+    squareSize = 100/newSizeValue;
+}
+
+slider.addEventListener("mouseup", function () {
+    createSketchBoard();
+})
 
 
 // assigns buttons to variables
@@ -138,8 +165,7 @@ eraserButton.addEventListener("click", function () {
 
 clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", function () {
-    squareBlock = document.querySelectorAll(".squareBlock");
-    squareBlock.forEach((squareBlock) => {
-        squareBlock.style.backgroundColor = "#ffffff";
-    })
+    clearSketchBoard ();
+    createSketchBoard();
+    container.style.backgroundColor = "#ffffff";
 });
