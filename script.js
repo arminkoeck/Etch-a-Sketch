@@ -35,7 +35,7 @@ document.addEventListener("mouseup", function() {mouseIsDown = false})
 // changes color of passed squares, argument decides which color
 
 function sketch (color) {
-    container.addEventListener("mouseover", function(e) {
+    container.addEventListener("mousemove", function(e) {
         if(mouseIsDown) {
             e.target.style.backgroundColor = color;
         };
