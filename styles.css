@@ -131,5 +131,14 @@ input[type=range]::-webkit-slider-thumb {
     box-shadow: 0px 0px 5px 1px #00000044;
     background: #ffffff;
     border-radius: 10px;
-    
+  }
+
+  .sliderCounter {
+    color: #46648C;
+    font-size: 24px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
   }

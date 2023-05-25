@@ -12,6 +12,22 @@ let squareSize = 100/squaresPerRow;
 let pickedColor = "#617ea5";
 
 
+// shows sketch board size under slider
+
+showSliderSize();
+slideContainer = document.querySelector("#slideContainer")
+
+function showSliderSize () {
+    sliderCounter = document.createElement("div");
+    sliderCounter.textContent = `${squaresPerRow} x ${squaresPerRow}`;
+    sliderCounter.classList.add("sliderCounter");
+    slideContainer.appendChild(sliderCounter);
+}
+
+function removeSliderSize() {
+    slideContainer.removeChild(sliderCounter);
+}
+
 // creates the sketch board
 
 function createSketchBoard () {
@@ -21,6 +37,8 @@ function createSketchBoard () {
         squareBlock.style.flexBasis = `${squareSize}%`;
         container.appendChild(squareBlock);
     };
+    removeSliderSize();
+    showSliderSize();
 };
 
 createSketchBoard();
